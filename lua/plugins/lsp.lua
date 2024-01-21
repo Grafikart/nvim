@@ -14,9 +14,7 @@ return { -- lspconfig
     "hrsh7th/nvim-cmp",
     version = false, -- last release is way too old
     event = "InsertEnter",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp", 
-      "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline"},
+    dependencies = {"hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline"},
     config = function(_, opts)
         local cmp = require("cmp")
         vim.opt.completeopt = {"menu", "menuone", "noselect"}
@@ -24,7 +22,7 @@ return { -- lspconfig
         cmp.setup({
             window = {
                 completion = cmp.config.window.bordered(),
-                documentation = cmp.config.window.bordered(),
+                documentation = cmp.config.window.bordered()
             },
             mapping = cmp.mapping.preset.insert({
                 ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -44,5 +42,12 @@ return { -- lspconfig
                 name = "path"
             }})
         })
+    end
+}, {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts)
+        require'lsp_signature'.setup(opts)
     end
 }}

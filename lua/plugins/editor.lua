@@ -5,4 +5,16 @@ return {
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         opts = {},
       },
+      -- Rename a variable (using ":IncRename" in keymap)
+      {
+        "smjonas/inc-rename.nvim",
+        dependencies = {"stevearc/dressing.nvim"},
+        config = function()
+            require("inc_rename").setup({
+                input_buffer_type = "dressing"
+            })
+        end
+    },
+    -- Auto close brackets
+    { 'echasnovski/mini.pairs', version = false, config = true},
 }
