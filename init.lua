@@ -13,29 +13,33 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   }
 end
-vim.opt.rtp:prepend(lazypath)
+
+local opt = vim.opt
+
+opt.rtp:prepend(lazypath)
 
 -- Load plugins from "plugins" directory
 require("lazy").setup("plugins", {})
 
-vim.o.breakindent = true -- Enable break indent
-vim.o.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
-vim.o.termguicolors = true -- NOTE: You should make sure your terminal supports this
-vim.o.expandtab = true -- Make tab into space
-vim.o.number = true -- line number
-vim.o.relativenumber = true -- line number
-vim.o.shiftround = true -- Round indent (when increment / decrement)
-vim.o.shiftwidth = 2 -- Size of an indent
-vim.o.sidescrolloff = 8
-vim.o.scrolloff = 999
-vim.o.smartindent = true -- Insert indents automatically
-vim.o.virtualedit = "block" -- Allow cursor to move where there 
-vim.o.undofile = true
-vim.o.undolevels = 10000
-vim.o.updatetime = 200 -- Save swap file and trigger CursorHoldis no text in visual block mode
-vim.o.wildmode = "longest:full,full" -- Command-line completion mode
-vim.o.winminwidth = 5 -- Minimum window width
-vim.o.wrap = false -- Disable line wrap
+opt.ignorecase = true -- Enable auto write
+opt.breakindent = true -- Enable break indent
+opt.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
+opt.termguicolors = true -- NOTE: You should make sure your terminal supports this
+opt.expandtab = true -- Make tab into space
+opt.number = true -- line number
+opt.relativenumber = true -- line number
+opt.shiftround = true -- Round indent (when increment / decrement)
+opt.shiftwidth = 2 -- Size of an indent
+opt.sidescrolloff = 8
+opt.scrolloff = 999
+opt.smartindent = true -- Insert indents automatically
+opt.virtualedit = "block" -- Allow cursor to move where there 
+opt.undofile = true
+opt.undolevels = 10000
+opt.updatetime = 200 -- Save swap file and trigger CursorHoldis no text in visual block mode
+opt.wildmode = "longest:full,full" -- Command-line completion mode
+opt.winminwidth = 5 -- Minimum window width
+opt.wrap = false -- Disable line wrap
 
 -- Design
 vim.cmd.colorscheme("tokyonight-night")

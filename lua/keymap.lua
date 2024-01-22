@@ -9,13 +9,26 @@ local organizeImport = function ()
     vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}})
 end
 
-vim.keymap.set('n', '<leader>oi', organizeImport, {desc = 'Organize imports'})
+local insertAndIndent = function ()
+  return string.match(vim.api.nvim_get_current_line(), '%g') == nil
+         and 'cc' or 'i'
+end
+
+--File navigation
 vim.keymap.set('n', '<leader>ff', findFile, {desc = 'Find files'})
+vim.keymap.set('n', '<leader>fp', ":Telescope projects<CR>", {desc = 'Find projects'})
 vim.keymap.set('n', '<leader><leader>', findFile, {desc = 'Find files'})
 vim.keymap.set('n', '<leader>fs', builtin.live_grep, {desc = 'Search'})
 vim.keymap.set('n', '<leader>fr', builtin.buffers, {desc = 'Find buffer'})
 vim.keymap.set('n', '<leader>gg', ':LazyGit<CR>', {silent = true, desc= 'Git'})
-vim.keymap.set('n', '<leader>rn', ':IncRename ')
+vim.keymap.set('n', '<leader>fe', ":Neotree reveal<CR>", {desc = 'File explorer'})
+
+-- Editor action
+vim.keymap.set('n', '<leader>rn', ':IncRename ', {desc = 'Rename'})
+vim.keymap.set('n', '<leader>oi', organizeImport, {desc = 'Organize imports'})
+vim.keymap.set('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', {desc = 'Code action'})
+---- Auto indent on empty line.
+vim.keymap.set('n', 'i', insertAndIndent, {expr=true, noremap=true})
 
 -- Clipboard system
 vim.keymap.set('v', '<leader>y',  '"+y')

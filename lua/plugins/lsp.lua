@@ -7,6 +7,7 @@ return { -- lspconfig
         local lspconfig = require("lspconfig")
         lspconfig.gopls.setup({})
         lspconfig.tsserver.setup({})
+        lspconfig.phpactor.setup({})
         require("mason").setup()
     end
 }, -- autocomplete
