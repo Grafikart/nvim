@@ -24,8 +24,11 @@ vim.o.breakindent = true -- Enable break indent
 vim.o.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
 vim.o.termguicolors = true -- NOTE: You should make sure your terminal supports this
 vim.o.expandtab = true -- Make tab into space
-vim.o.number = true -- line number
-vim.o.relativenumber = true -- line number
+-- line number
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.cursorlineopt = "number"
+-- Tabs / Space
 vim.o.shiftround = true -- Round indent (when increment / decrement)
 vim.o.shiftwidth = 2 -- Size of an indent
 vim.o.sidescrolloff = 8
@@ -41,6 +44,9 @@ vim.o.wrap = false -- Disable line wrap
 
 -- Design
 vim.cmd.colorscheme("tokyonight-night")
+vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='#787C99', bold=true })
+vim.api.nvim_set_hl(0, 'LineNr', { fg='#E69B1F', bold=true })
+vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='#787C99', bold=true })
 
 -- -- Highlight on yank
 -- -- https://neovim.io/doc/user/lua.html#vim.highlight
