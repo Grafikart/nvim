@@ -17,6 +17,24 @@ return { -- lspconfig
         lspconfig.phpactor.setup({})
         lspconfig.docker_compose_language_service.setup({})
         lspconfig.dockerls.setup({})
+        lspconfig.emmet_language_server.setup({
+            filetypes = { "css", "html", "javascript", "javascriptreact", "less", "sass", "scss", "php", "typescriptreact" },
+            -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
+            init_options = {
+              --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
+              preferences = {},
+              --- @type boolean Defaults to `true`
+              showAbbreviationSuggestions = true,
+              --- @type "always" | "never" Defaults to `"always"`
+              showExpandedAbbreviation = "always",
+              --- @type boolean Defaults to `false`
+              showSuggestionsAsSnippets = false,
+              --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/syntax-profiles/)
+              syntaxProfiles = {},
+              --- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
+              variables = {},
+            },
+          })
         require("mason").setup()
     end
 }, -- autocomplete
@@ -27,12 +45,14 @@ return { -- lspconfig
     dependencies = {
         "hrsh7th/cmp-nvim-lsp", 
         "hrsh7th/cmp-buffer", 
-        "hrsh7th/cmp-path", 
+        -- "hrsh7th/cmp-path", 
         "hrsh7th/cmp-cmdline",
         -- Snippets (like foreach, html...)
         "rafamadriz/friendly-snippets",
         -- Icon for suggestion
-        "onsails/lspkind.nvim"
+        "onsails/lspkind.nvim",
+        -- Snippet engine
+        "L3MON4D3/LuaSnip",
     },
     config = function(_, opts)
         local cmp = require("cmp")
@@ -56,6 +76,15 @@ return { -- lspconfig
 
                 return kind
                 end,
+            },
+            snippet = {
+              -- REQUIRED - you must specify a snippet engine
+              expand = function(args)
+                -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+                require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+                -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+              end,
             },
             window = {
                 -- completion = cmp.config.window.bordered(),
