@@ -1,13 +1,22 @@
 return { -- lspconfig
 {
     "neovim/nvim-lspconfig",
-    dependencies = { -- "mason.nvim",
-    "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim"},
+    dependencies = {
+        -- Automatically install LSPs to stdpath for neovim
+        {"williamboman/mason.nvim", config = true}, 
+        "williamboman/mason-lspconfig.nvim",
+        -- Notification for updates on the LSP        
+        { 'j-hui/fidget.nvim', opts = {} },
+        -- init.lua support
+        'folke/neodev.nvim'
+    },
     config = function(_, opts)
         local lspconfig = require("lspconfig")
         lspconfig.gopls.setup({})
         lspconfig.tsserver.setup({})
         lspconfig.phpactor.setup({})
+        lspconfig.docker_compose_language_service.setup({})
+        lspconfig.dockerls.setup({})
         require("mason").setup()
     end
 }, -- autocomplete
@@ -15,7 +24,14 @@ return { -- lspconfig
     "hrsh7th/nvim-cmp",
     version = false, -- last release is way too old
     event = "InsertEnter",
-    dependencies = {"hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline"},
+    dependencies = {
+        "hrsh7th/cmp-nvim-lsp", 
+        "hrsh7th/cmp-buffer", 
+        "hrsh7th/cmp-path", 
+        "hrsh7th/cmp-cmdline",
+        -- Snippets (like foreach, html...)
+        "rafamadriz/friendly-snippets"
+    },
     config = function(_, opts)
         local cmp = require("cmp")
         vim.opt.completeopt = {"menu", "menuone", "noselect"}

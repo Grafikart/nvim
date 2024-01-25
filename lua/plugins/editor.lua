@@ -1,4 +1,8 @@
 return {
+    -- "gc" to comment visual regions/lines
+    { 'numToStr/Comment.nvim', opts = {} },
+    -- Detect tabstop and shiftwidth automatically
+    'tpope/vim-sleuth',
     -- Automatically add closing tags for HTML and JSX
     {
         "windwp/nvim-ts-autotag",

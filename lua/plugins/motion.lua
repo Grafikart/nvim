@@ -24,8 +24,4 @@ return { -- Fast jump to a caracter using "s" or "S"
         vim.keymap.del({"x", "o"}, "x")
         vim.keymap.del({"x", "o"}, "X")
     end
-}, {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.5',
-    dependencies = {'nvim-lua/plenary.nvim'}
-}}
+}, }

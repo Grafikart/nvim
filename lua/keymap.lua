@@ -1,8 +1,26 @@
 local builtin = require('telescope.builtin')
 local map = vim.keymap.set
 
+-- files to ignore with `file_ignore_patterns`
+local excludedFiles = {
+'yarn%.lock',
+'package%-lock%.json',
+'pnpm%-lock%.yaml',
+'node_modules/.*',
+'deno%.lock',
+'%.git/.*',
+'%.png',
+'%.jpeg',
+'%.jpg',
+'%.ico',
+}
+local telescopeOpts = {hidden = true, follow = true, file_ignore_patterns = excludedFiles}
+
 local findFile = function ()
-    builtin.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})
+    builtin.find_files(telescopeOpts)
+end
+local searchFile = function ()
+    builtin.live_grep(telescopeOpts)
 end
 
 local organizeImport = function ()
@@ -18,7 +36,7 @@ end
 vim.keymap.set('n', '<leader>ff', findFile, {desc = 'Find files'})
 vim.keymap.set('n', '<leader>fp', ":Telescope projects<CR>", {desc = 'Find projects'})
 vim.keymap.set('n', '<leader><leader>', findFile, {desc = 'Find files'})
-vim.keymap.set('n', '<leader>fs', builtin.live_grep, {desc = 'Search'})
+vim.keymap.set('n', '<leader>fs', searchFile, {desc = 'Search'})
 vim.keymap.set('n', '<leader>fr', builtin.buffers, {desc = 'Find buffer'})
 vim.keymap.set('n', '<leader>gg', ':LazyGit<CR>', {silent = true, desc= 'Git'})
 vim.keymap.set('n', '<leader>fe', ":Neotree reveal<CR>", {desc = 'File explorer'})
