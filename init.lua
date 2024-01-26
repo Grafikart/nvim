@@ -29,6 +29,7 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.cursorlineopt = "number"
 -- Tabs / Space
+vim.o.tabstop = 4
 vim.o.shiftround = true -- Round indent (when increment / decrement)
 vim.o.shiftwidth = 2 -- Size of an indent
 vim.o.sidescrolloff = 8
