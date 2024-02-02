@@ -44,6 +44,7 @@ vim.keymap.set("n", "<leader>fe", ":Neotree toggle=true reveal<CR>", { desc = "F
 vim.keymap.set("n", "<leader>rn", ":IncRename ", { desc = "Rename" })
 vim.keymap.set("n", "<leader>oi", organizeImport, { desc = "Organize imports" })
 vim.keymap.set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", { desc = "Code action" })
+vim.keymap.set("n", "<leader>s", ":w<CR>", { desc = "Save" })
 ---- Auto indent on empty line.
 vim.keymap.set("n", "i", insertAndIndent, { expr = true, noremap = true })
 
