@@ -20,6 +20,7 @@ return {
 		},
 		opts = {
 			defaults = {
+				sorting_strategy = "ascending", -- display results top->bottom
 				layout_config = {
 					prompt_position = "top",
 					horizontal = {
