@@ -3,9 +3,9 @@ local augroup = vim.api.nvim_create_augroup
 
 local general = augroup("General Settings", { clear = true })
 
-autocmd({ "FocusLost", "BufLeave", "BufWinLeave", "InsertLeave" }, {
+autocmd({ "InsertLeave" }, {
 	callback = function()
-		if vim.bo.filetype ~= "" and vim.bo.buftype == "" then
+		if vim.bo.filetype ~= "" and vim.bo.buftype == "" and vim.bo.filetype ~= "lua" then
 			vim.cmd("silent! w")
 		end
 	end,

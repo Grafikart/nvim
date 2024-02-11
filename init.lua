@@ -15,7 +15,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
-
 -- Load plugins from "plugins" directory
 require("lazy").setup("plugins", {})
 
@@ -23,11 +22,16 @@ vim.o.ignorecase = true -- Enable auto write
 vim.o.breakindent = true -- Enable break indent
 vim.o.completeopt = "menuone,noselect" -- Set completeopt to have a better completion experience
 vim.o.termguicolors = true -- NOTE: You should make sure your terminal supports this
+vim.o.backup = false
+vim.o.swapfile = false
+vim.o.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 vim.o.expandtab = true -- Make tab into space
+vim.o.timeoutlen = 750 -- Time to press multi caracter shortcut
 -- line number
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.cursorlineopt = "number"
+vim.o.cursorline = true -- highlight the current line
 -- Tabs / Space
 vim.o.tabstop = 4
 vim.o.shiftround = true -- Round indent (when increment / decrement)
@@ -45,9 +49,9 @@ vim.o.wrap = false -- Disable line wrap
 
 -- Design
 vim.cmd.colorscheme("tokyonight-night")
-vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#787C99", bold = true })
-vim.api.nvim_set_hl(0, "LineNr", { fg = "#E69B1F", bold = true })
-vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#787C99", bold = true })
+-- vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#787C99", bold = true })
+-- vim.api.nvim_set_hl(0, "LineNr", { fg = "#E69B1F", bold = true })
+-- vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#787C99", bold = true })
 
 -- -- Highlight on yank
 -- -- https://neovim.io/doc/user/lua.html#vim.highlight
