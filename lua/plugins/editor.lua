@@ -13,11 +13,12 @@ return {
 	{
 		"smjonas/inc-rename.nvim",
 		dependencies = { "stevearc/dressing.nvim" },
-		config = function()
-			require("inc_rename").setup({
-				input_buffer_type = "dressing",
-			})
-		end,
+		keys = {
+			{ "<leader>rn", "<cmd>IncRename<cr>", desc = "Rename" }
+		},
+		opts = {
+			input_buffer_type = "dressing",
+		}
 	},
 	-- Auto close brackets
 	{

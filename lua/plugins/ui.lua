@@ -1,5 +1,4 @@
-return { 
--- indent guides for Neovim
+return { -- indent guides for Neovim
 {
     "lukas-reineke/indent-blankline.nvim",
     event = {"BufReadPost", "BufNewFile", "BufWritePre"},
